@@ -1,19 +1,23 @@
 import { Injectable } from '@nestjs/common';
 
 /**
- * Data access layer
+ * Data layer
  */
 @Injectable()
 export class Repository {
-  fetchOrders() {
-    return require('../Resources/Data/orders.json');
+  fetchOrders(): Promise<any[]> {
+    return new Promise(resolve => resolve(require('../Resources/Data/orders')));
   }
 
-  fetchProducts() {
-    return require('../Resources/Data/products.json');
+  fetchProducts(): Promise<any[]> {
+    return new Promise(resolve =>
+      resolve(require('../Resources/Data/products')),
+    );
   }
 
-  fetchCustomers() {
-    return require('../Resources/Data/customers.json');
+  fetchCustomers(): Promise<any[]> {
+    return new Promise(resolve =>
+      resolve(require('../Resources/Data/customers')),
+    );
   }
 }
