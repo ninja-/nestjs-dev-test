@@ -15,9 +15,15 @@ describe('', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/reports/products/date (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(404);
+      .get('/report/products/2019-08-08')
+      .expect({ productName: 'Black sport shoes', quantity: 1, totalPrice: 110 });
+  });
+
+  it('/reports/customer/date (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/report/customer/2019-08-08')
+      .expect({ customerName: 'Jane Doe', totalPrice: 110 });
   });
 });
